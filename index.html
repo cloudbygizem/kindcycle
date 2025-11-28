@@ -1,257 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>KindCycle – Community Donation in Ireland</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KindCycle - Give New Life to Unused Treasures in Ireland</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    <style>
+        /* --- Color Palette --- */
+        :root {
+            --color-light-beige: #f5f5ee;
+            --color-dark-green: #4C6F4C;
+            --color-text-dark: #2b2620;
+            --color-text-light: #5b5248;
+            --color-cta-donate: #557A55;
+            --color-cta-discover: #D39B4E;
+            --color-border-light: #e0d4c5;
+        }
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f6f1ea;
-      color: #2b2620;
-      line-height: 1.5;
-    }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .container {
-      max-width: 940px;
-      margin: 0 auto;
-      padding: 1.5rem 1rem 2.5rem;
-    }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--color-light-beige);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
 
-    header {
-      border-bottom: 1px solid #e0d4c5;
-      padding-bottom: 0.8rem;
-      margin-bottom: 1.5rem;
-    }
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--color-text-dark);
+        }
 
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        a { text-decoration: none; color: inherit; }
+        
+        .container {
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 2.5rem;
+        }
 
-    .logo span:first-child {
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
+        section {
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
 
-    nav a {
-      margin-left: 1rem;
-      text-decoration: none;
-      color: #2b2620;
-    }
+        section h2 {
+            font-size: 2em;
+            margin-bottom: 1.5rem;
+            color: var(--color-dark-green);
+            border-bottom: 3px solid var(--color-cta-discover);
+            padding-bottom: 8px;
+            text-align: center;
+        }
 
-    nav a:hover { opacity: 0.7; }
+        /* --- Header & Navigation --- */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 5% 10px;
+            background-color: var(--color-light-beige);
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        
+        .logo-container { 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
 
-    /* --- NEW: Hero Image --- */
-    .hero-image {
-      width: 100%;
-      height: 230px;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      background-size: cover;
-      background-position: center;
-      background-image: url('https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&w=1200&q=60');
-      /* Ireland coast soft beige */
-    }
+        .logo-bike {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .hero-title {
-      font-size: 1.8rem;
-      margin-bottom: 0.6rem;
-    }
+        .logo-bike img {
+            width: 80px;
+            height: auto;
+            display: block;
+        }
 
-    p { color: #5b5248; }
+        .logo-text {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--color-dark-green);
+            margin-top: 5px;
+        }
 
-    .btn {
-      display: inline-block;
-      padding: 0.55rem 1.3rem;
-      background: #8b6b5c;
-      color: #fff;
-      border-radius: 999px;
-      text-decoration: none;
-    }
+        .nav { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .nav a { color: var(--color-text-dark); font-weight: 600; padding: 5px 0; }
+        .nav a:hover { color: var(--color-cta-discover); }
+        
+        /* --- Hero Section --- */
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1579737158309-847253509170?auto=format&fit=crop&w=1400&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 5%;
+            height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.35);
+            z-index: 0;
+        }
 
-    /* Cards */
-    .card {
-      background: #fdf9f4;
-      border: 1px solid #e0d4c5;
-      padding: 1rem;
-      border-radius: 8px;
-      margin-top: 0.6rem;
-    }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-    }
+        .hero-content h1 {
+            color: white;
+            font-size: 2.6em;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
 
-    /* --- NEW: Small Donation Images --- */
-    .donation-images {
-      display: flex;
-      gap: 1rem;
-      margin-top: 0.8rem;
-    }
+        .cta-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-    .don-img {
-      width: 48%;
-      height: 140px;
-      border-radius: 8px;
-      background-size: cover;
-      background-position: center;
-      border: 1px solid #e0d4c5;
-    }
+        .btn {
+            padding: 14px 32px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: background 0.3s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+        }
 
-    .don-img1 {
-      background-image: url('https://images.unsplash.com/photo-1581091870675-1c4c31fd99af?auto=format&fit=crop&w=800&q=60');
-    }
+        .btn:hover { transform: translateY(-1px); }
 
-    .don-img2 {
-      background-image: url('https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=60');
-    }
+        .donate-btn {
+            background-color: var(--color-cta-donate);
+            color: white;
+        }
 
-    /* Vision image */
-    .vision-image {
-      width: 100%;
-      height: 180px;
-      margin-top: 1rem;
-      border-radius: 8px;
-      background-image: url('https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1100&q=60');
-      background-size: cover;
-      background-position: center;
-    }
+        .discover-btn {
+            background-color: var(--color-cta-discover);
+            color: white;
+        }
+        
+        /* --- Features Section --- */
+        .features-section {
+            background-color: var(--color-dark-green);
+            color: white;
+            padding: 50px 5%;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-    .form-box { background: #ffffff; border: 1px solid #e0d4c5; padding: 1rem; border-radius: 8px; }
-    .form-row { display: flex; flex-direction: column; margin-bottom: 0.75rem; }
-    input, select, textarea { padding: 0.45rem; border: 1px solid #d1c3b4; border-radius: 5px; background: #fdfaf7; }
-    button.btn { border: none; cursor: pointer; }
+        .feature-box { max-width: 300px; }
 
-    footer {
-      margin-top: 2rem;
-      border-top: 1px solid #e0d4c5;
-      padding-top: 1rem;
-      color: #8d7f72;
-      text-align: center;
-    }
-  </style>
+        .feature-icon {
+            font-size: 2.2em;
+            color: var(--color-cta-discover);
+            margin-bottom: 15px;
+            border: 2px solid var(--color-cta-discover);
+            border-radius: 50%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-box h3 { color: white; margin-bottom: 5px; font-size: 1.3em; }
+        
+        .feature-box p { font-size: 0.9em; opacity: 0.9; }
+
+        /* --- Vision & Mission --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            border-top: 5px solid var(--color-cta-discover);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Forms --- */
+        .form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--color-border-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-row { display: flex; flex-direction: column; margin-bottom: 1rem; }
+
+        input, select, textarea { 
+            padding: 10px; 
+            border: 1px solid var(--color-border-light); 
+            border-radius: 4px; 
+            background: #fdfdfc; 
+            font-size: 1em;
+            margin-top: 5px;
+            color: var(--color-text-dark);
+        }
+        
+        label { font-weight: 600; color: var(--color-dark-green); margin-bottom: 3px; }
+        
+        .submit-btn {
+            background-color: var(--color-dark-green);
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover { background-color: var(--color-cta-donate); }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--color-dark-green);
+            padding: 20px 5%;
+            text-align: center;
+        }
+
+        .social-newsletter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a { 
+            color: white; 
+            font-size: 1.2em; 
+            margin: 0 5px; 
+            opacity: 0.8; 
+        }
+
+        .newsletter-form { display: flex; }
+        
+        .newsletter-form input[type="email"] { 
+            border-radius: 3px 0 0 3px; 
+            width: 200px;
+            border: none;
+            padding: 8px 10px;
+        }
+
+        .newsletter-form button {
+            padding: 8px 15px;
+            border: none;
+            background-color: var(--color-cta-discover);
+            color: white;
+            border-radius: 0 3px 3px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .powered-by { 
+            color: rgba(255, 255, 255, 0.6); 
+            font-size: 0.8em; 
+            margin-top: 20px; 
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero-section { height: 460px; padding: 80px 5%; }
+            .hero-content h1 { font-size: 2rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body>
-<div class="container">
 
-  <!-- HEADER -->
-  <header>
-    <div class="top-bar">
-      <div class="logo">
-        <span>KindCycle</span>
-        <span style="font-size:0.85rem; color:#7b7269;">Passing on good things across Ireland</span>
-      </div>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-bike">
+                <img src="kindcycle-logo.png" alt="KindCycle logo">
+            </div>
+            <div class="logo-text">KindCycle</div>
+        </div>
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#vision-mission">Vision &amp; Mission</a>
+            <a href="#donate-form">Donate Items</a>
+            <a href="#create-account">Create an Account</a>
+            <a href="#footer">Contact</a>
+        </nav>
+    </header>
 
-      <nav>
-        <a href="#about">About</a>
-        <a href="#vision">Vision</a>
-        <a href="#donate">Donate</a>
-        <a href="#account">Account</a>
-      </nav>
+    <!-- HERO -->
+    <main id="home" class="hero-section">
+        <div class="hero-content">
+            <h1>Give New Life to Unused Treasures in Ireland</h1>
+            <div class="cta-buttons">
+                <a href="#donate-form" class="btn donate-btn">🎁 Donate Your Items</a>
+                <a href="#vision-mission" class="btn discover-btn">📍 Discover Local Causes</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- FEATURES -->
+    <section class="features-section">
+        <div class="feature-box">
+            <div class="feature-icon">📦</div>
+            <h3>Reduce Waste</h3>
+            <p>Extend the life of items by keeping them in circulation instead of landfills.</p>
+        </div>
+        <div class="feature-box">
+            <div class="feature-icon">🤝</div>
+            <h3>Support Community</h3>
+            <p>Connect with local causes and neighbours across towns and villages in Ireland.</p>
+        </div>
+        <div class="feature-box">
+            <div class="feature-icon">😊</div>
+            <h3>Share Joy</h3>
+            <p>Your donation can brighten another family’s home and story.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- VISION & MISSION -->
+        <section id="vision-mission">
+            <h2>Our Vision and Mission</h2>
+            <div class="card-grid">
+                <div class="info-card">
+                    <h3>Our Vision</h3>
+                    <p style="color:var(--color-text-light);">
+                        To promote mindful consumption across Ireland, where every unused item becomes a resource for someone in need.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <h3>Our Mission</h3>
+                    <p style="color:var(--color-text-light);">
+                        To offer a simple, trustworthy platform that connects generous donors with verified charities and families across all Irish counties.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DONATE FORM -->
+        <section id="donate-form">
+            <h2>Donate Your Items</h2>
+            <p style="text-align: center; color:var(--color-text-light);">
+                Help us keep kindness cycling! Please fill in the details of the item you wish to donate.
+            </p>
+            
+            <div class="form-card">
+                <form>
+                    <div class="form-row">
+                        <label for="item-title">Item Title</label>
+                        <input id="item-title" required placeholder="e.g. Children's Bicycle, Box of Books">
+                    </div>
+                    
+                    <div class="form-row">
+                        <label for="category">Category</label>
+                        <select id="category" required>
+                            <option value="">Select Category</option>
+                            <option>Clothing &amp; Footwear</option>
+                            <option>Children’s / Toys</option>
+                            <option>Household Goods</option>
+                            <option>Electronics (Working)</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="location">Your Location (County/Town)</label>
+                        <input id="location" required placeholder="e.g. County Cork, Dublin 4">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="description">Detailed Description</label>
+                        <textarea id="description" required rows="4" placeholder="e.g. Good condition, size M, needs light cleaning."></textarea>
+                    </div>
+
+                    <button class="submit-btn" type="submit">Submit Donation Offer</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- CREATE ACCOUNT -->
+        <section id="create-account">
+            <h2>Create Your KindCycle Account</h2>
+            <p style="text-align: center; color:var(--color-text-light);">
+                Join the KindCycle community to manage your donations and track your impact.
+            </p>
+            
+            <div class="form-card">
+                <form>
+                    <div class="form-row"><label for="full-name">Full Name</label><input id="full-name" required></div>
+                    <div class="form-row"><label for="email-reg">Email Address</label><input type="email" id="email-reg" required></div>
+                    <div class="form-row"><label for="password">Password</label><input type="password" id="password" required></div>
+                    <div class="form-row"><label for="confirm-password">Confirm Password</label><input type="password" id="confirm-password" required></div>
+                    <div class="form-row"><label for="reg-location">Primary Location (County)</label><input id="reg-location" placeholder="e.g. County Galway" required></div>
+                    
+                    <button class="submit-btn" type="submit">Create Account</button>
+                </form>
+            </div>
+        </section>
     </div>
-  </header>
 
-  <!-- HERO SECTION WITH IMAGE -->
-  <div class="hero-image"></div>
-
-  <h1 class="hero-title">Give unused items a second life in your Irish community.</h1>
-  <p>From Dublin’s coastal towns to Galway’s villages, KindCycle helps good-quality items find new meaning.</p>
-
-  <br>
-  <a href="#donate" class="btn">Donate now</a>
-
-  <!-- ABOUT -->
-  <section id="about" style="margin-top:2rem;">
-    <h2>How KindCycle Works</h2>
-    <div class="card">
-      <ul>
-        <li>You offer an item in good condition.</li>
-        <li>We match it with someone in need in Ireland.</li>
-        <li>You agree a collection point (libraries, community cafés, GAA clubs).</li>
-      </ul>
-
-      <!-- Donation-themed images -->
-      <div class="donation-images">
-        <div class="don-img don-img1"></div>
-        <div class="don-img don-img2"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VISION -->
-  <section id="vision" style="margin-top:2rem;">
-    <h2>Our Vision & Mission</h2>
-
-    <div class="vision-image"></div>
-
-    <div class="grid-2" style="margin-top:1rem;">
-      <div class="card">
-        <h3>Vision</h3>
-        <p>A kinder Ireland where unused items are recirculated with respect and care.</p>
-      </div>
-
-      <div class="card">
-        <h3>Mission</h3>
-        <p>To make giving effortless so items flow through Irish towns and support those who need them most.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- DONATION FORM -->
-  <section id="donate" style="margin-top:2rem;">
-    <h2>Donate an Item</h2>
-    <div class="form-box">
-
-      <form>
-        <div class="form-row">
-          <label>Full name</label>
-          <input required>
+    <!-- FOOTER -->
+    <footer class="footer" id="footer">
+        <div class="social-newsletter">
+            <div class="social-icons">
+                <a href="#">f</a>
+                <a href="#">t</a>
+                <a href="#">ig</a>
+            </div>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Newsletter" required>
+                <button type="submit">Join</button>
+            </form>
         </div>
+        <p class="powered-by">Powered by Irish Spirit</p>
+    </footer>
 
-        <div class="form-row">
-          <label>Email</label>
-          <input type="email" required>
-        </div>
-
-        <div class="form-row">
-          <label>Town / County in Ireland</label>
-          <input placeholder="e.g. Cork City, Co. Cork" required>
-        </div>
-
-        <div class="form-row">
-          <label>Category</label>
-          <select required>
-            <option>Clothing</option>
-            <option>Children’s items</option>
-            <option>Books / School</option>
-            <option>Household items</option>
-          </select>
-        </div>
-
-        <div class="form-row">
-          <label>Description</label>
-          <textarea required></textarea>
-        </div>
-
-        <button class="btn" type="submit">Send donation offer</button>
-      </form>
-
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    © 2025 KindCycle — Community donation project inspired by Ireland.
-  </footer>
-
-</div>
 </body>
 </html>
